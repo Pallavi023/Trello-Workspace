@@ -9,15 +9,15 @@ import { User } from "@/interfaces";
 
 const AddMmebers = ({ organization }: { organization: any }) => {
   const [memebers, setMembers] = useState<any>([]);
-  const getMembers = async () => {
-    const getUsers = await getWithoutOrgMembers({
-      organizationId: organization?.id,
-    });
-    setMembers(getUsers?.result);
-  };
-  useEffect(() => {
-    if (organization) getMembers();
-  }, []);
+  // const getMembers = async () => {
+  // //   const getUsers = await getWithoutOrgMembers({
+  // //     organizationId: organization?.id,
+  // //   });
+  // //   setMembers(getUsers?.result);
+  // // };
+  // useEffect(() => {
+  //   if (organization) getMembers();
+  // }, []);
 
   const handleSubmit = async (user: any) => {
     user?.orgIds?.push(organization?.id);

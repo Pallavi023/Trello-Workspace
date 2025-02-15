@@ -1,5 +1,5 @@
 "use client";
-import { updateDard } from "@/services/card";
+import { updateCard } from "@/services/card";
 import { useParams } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "sonner";
@@ -18,7 +18,7 @@ const CardDescription = ({ cardData, setCardData }: CardDetails) => {
 
   const handleSubmit = async (data: FormData) => {
     const description = data.get("description") as string;
-    const res = await updateDard({
+    const res = await updateCard({
       description,
       boardId,
       id: cardData?.id,

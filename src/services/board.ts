@@ -4,7 +4,7 @@ import { createAudLog } from "./audit";
 import { ACTION, TABLE_TYPE } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { Board, User } from "@/interfaces";
-
+import { redirect } from "next/navigation";
 export const createBoard = async (data: {
   title: string;
   image: string;

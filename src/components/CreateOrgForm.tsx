@@ -11,7 +11,7 @@ import ImagesForm from "./ImagesForm";
 import InputForm from "./InputForm";
 import FormSubmit from "./FormSubmit";
 import { toast } from "sonner";
-import { createOgranization } from "@/services/organization";
+import { createOrganization } from "@/services/organization";
 import { useRouter } from "next/navigation";
 
 const CreateOrgForm = () => {
@@ -24,7 +24,7 @@ const CreateOrgForm = () => {
         toast.error("please fill all required fields");
         return;
       }
-      const res = await createOgranization({ title, image });
+      const res = await createOrganization({ title, image });
       toast.success("Organization successfully added");
       router.push(`/organizations/${res?.result?.id}`);
     } catch (error) {

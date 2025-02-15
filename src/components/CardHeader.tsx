@@ -1,7 +1,7 @@
 import React from "react";
 import InputForm from "./InputForm";
 import { useParams } from "next/navigation";
-import { updateDard } from "@/services/card";
+import { updateCard } from "@/services/card";
 import { toast } from "sonner";
 
 interface CardDetails {
@@ -12,7 +12,7 @@ const CardHeader = ({ cardData, setCardData }: CardDetails) => {
   const { boardId }: { boardId: string } = useParams();
   const handleSubmit = async (data: FormData) => {
     const title = data.get("title") as string;
-    const res = await updateDard({
+    const res = await updateCard({
       title,
       boardId,
       id: cardData.id,

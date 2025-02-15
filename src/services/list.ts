@@ -90,6 +90,7 @@ export const listCopy = async (data: { id: string; boardId: string }) => {
         error: "list not found",
       };
     }
+
     const lastList = await prismaDB.list.findFirst({
       where: { boardId },
       orderBy: { order: "desc" },
@@ -106,10 +107,11 @@ export const listCopy = async (data: { id: string; boardId: string }) => {
         cards: listtoCopy?.cards?.length
           ? {
               createMany: {
-                data: listtoCopy?.cards?.map((card: any) => ({
-                  title: card?.title,
+                data: listtoCopy?.cards?.map((card) => ({
+                  title: card.title,
                   description: card.description,
                   order: card.order,
+                  boardId: boardId, // Add the boardId here
                 })),
               },
             }
@@ -119,6 +121,7 @@ export const listCopy = async (data: { id: string; boardId: string }) => {
         cards: true,
       },
     });
+
     console.log("list", list);
     await createAudLog({
       tableId: list.id,

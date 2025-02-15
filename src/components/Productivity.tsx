@@ -3,7 +3,19 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 
-const features = [
+interface Feature {
+  title: string;
+  description: string;
+  icon: string;
+  color: string;
+}
+
+interface FeatureCardProps extends Feature {
+  isSelected: boolean;
+  onClick: () => void;
+}
+
+const features: Feature[] = [
   {
     title: "Smart Planning",
     description: "Organize tasks with intelligent project planning and scheduling",
@@ -24,7 +36,7 @@ const features = [
   }
 ];
 
-const FeatureCard = ({ title, description, icon, color, isSelected, onClick }) => {
+const FeatureCard: React.FC<FeatureCardProps> = ({ title, description, icon, color, isSelected, onClick }) => {
   return (
     <motion.div
       onClick={onClick}
@@ -92,17 +104,18 @@ const FeatureCard = ({ title, description, icon, color, isSelected, onClick }) =
   );
 };
 
-const Feature3D = () => {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+const Feature3D: React.FC = () => {
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState<boolean>(true);
 
   const router = useRouter();
 
   const handleGetStarted = () => {
     router.push('/organizations');
   };
+
   useEffect(() => {
-    let interval;
+    let interval: NodeJS.Timeout;
     if (isAutoPlaying) {
       interval = setInterval(() => {
         setSelectedIndex((prev) => (prev + 1) % features.length);
